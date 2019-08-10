@@ -1,4 +1,4 @@
 class Politician < ApplicationRecord
   # Validations
-  validates :name, :political_party, :age, :type, :state, :image_url, presence: true
+  validates_presence_of :name, :political_party, :age, :type, :state, :image_url
 end
