@@ -19,6 +19,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'vcr'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -32,9 +34,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'shoulda-matchers'
   gem 'httparty'
-  gem 'vcr'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
