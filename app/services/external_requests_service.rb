@@ -1,13 +1,13 @@
 require 'rest-client'
 require 'json'
 
-class ExternalRequestsServices
+class ExternalRequestsService
   def self.list_deputies
     url = 'https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome'
 
     res = RestClient.get url, accept: :json
 
-    res[:dados]
+    JSON.parse(res.body).symbolize_keys[:dados]
   end
 
   def self.list_senators
@@ -15,6 +15,7 @@ class ExternalRequestsServices
 
     res = RestClient.get url, content_type: :json, accept: :json
 
-    res['ListaParlamentarEmExercicio']
+    JSON.parse(res.body).symbolize_keys[:ListaParlamentarEmExercicio]
+        .symbolize_keys[:Parlamentares].symbolize_keys[:Parlamentar]
   end
 end
