@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_152810) do
     t.string "name"
     t.string "political_party"
     t.integer "age"
-    t.string "work"
+    t.string "kind"
     t.string "state"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
