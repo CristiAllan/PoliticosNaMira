@@ -11,25 +11,29 @@ deputies = ExternalRequestsService.list_deputies
 senators = ExternalRequestsService.list_senators
 
 deputies.each do |political|
-  
-  name = political["nome"]
-  political_party = political["siglaPartido"]
-  age = ExternalRequestsService.get_age_political political["id"]
-  type =  "Deputado"
-  state = political["siglaUf"]
-  image_url = political["urlFoto"]
-  
-  Politician.create({name: name,political_party: political_party,age: age,type: type,state: state,image_url: image_url})
-
+  Politician.new.tap do |deputie|
+    deputie.name = political["nome"]
+    deputie.political_party = political["siglaPartido"]
+    deputie.age = ExternalRequestsService.get_age_political political["id"]
+    deputie.kind =  "Deputado"
+    deputie.state = political["siglaUf"]
+    deputie.image_url = political["urlFoto"]
+    deputie.save!
+  end
 end
 
 senators.each do |political|
-  name = political["IdentificacaoParlamentar"]["NomeCompletoParlamentar"]
-  political_party = political["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"]
-  age = ExternalRequestsService.get_age_political political["IdentificacaoParlamentar"]["CodigoParlamentar"],1
-  type =  political["IdentificacaoParlamentar"]["FormaTratamento"]
-  state = political["IdentificacaoParlamentar"]["UfParlamentar"]
-  image_url = political["IdentificacaoParlamentar"]["UrlFotoParlamentar"]
-  
-  Politician.create({name: name,political_party: political_party,age: age,type: type,state: state,image_url: image_url})
+  Politician.new.tap do |senator|
+    senator.name = political["IdentificacaoParlamentar"]["NomeCompletoParlamentar"]
+    if political["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"].present?
+      senator.political_party = political["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"]
+    else
+      senator.political_party = "Sem Partido"
+    end
+    senator.age = ExternalRequestsService.get_age_political political["IdentificacaoParlamentar"]["CodigoParlamentar"],1
+    senator.kind =  political["IdentificacaoParlamentar"]["FormaTratamento"]
+    senator.state = political["IdentificacaoParlamentar"]["UfParlamentar"]
+    senator.image_url = political["IdentificacaoParlamentar"]["UrlFotoParlamentar"]
+    senator.save!
+  end
 end
