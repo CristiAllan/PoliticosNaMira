@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :comparation, only: [:index]
+  get 'pages/index'
+  resources :pages, only: [:index]
   resources :ranking, only: [:index]
   
-  root to: 'comparation#index'
+  root to: 'pages#index'
 end

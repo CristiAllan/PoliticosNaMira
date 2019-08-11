@@ -1,0 +1,26 @@
+<%= link_to 'Comparação', root_path %>
+<%= link_to 'Ranking', ranking_index_path %>
+
+<br>
+
+<h1>Qual político é melhor?</h1>
+<h3>Escolha o político que tem contribuído mais com o Brasil</h3>
+<br><br>
+
+<div class="columns">
+  <div class="column"></div>
+  
+  <div class="column">
+    <%= image_tag(@politician1['urlFoto']) %>
+    <h2><%= @politician1['nome'] %></h2>
+    <h2><%= @politician1['siglaPartido'] %> (<%= @politician1['siglaUf'] %>)</h2>
+  </div>
+  
+  <div class="column">
+    <%= image_tag(@politician2['urlFoto']) %>
+    <h2><%= @politician2['nome'] %></h2>
+    <h2><%= @politician2['siglaPartido'] %> (<%= @politician2['siglaUf'] %>)</h2>
+  </div>
+  
+  <div class="column"></div>
+</div>
