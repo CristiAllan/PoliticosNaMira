@@ -1,0 +1,29 @@
+<section id="dashboard" class="section has-text-white has-text-centered dashboard">
+  <div class="campaigns">
+    <h2 class="is-size-5 has-text-white-semibold">Ranking</h2>
+    <% if @rankings.count > 0 %>
+      <br/>
+      <section class="container">
+        <div class="columns features">
+          <div class="column is-4">
+            <%= @rankings.each do |ranking| %>
+                <div class="card is-shady">
+                  <div class="card-image section">
+                    <figure class="image is-3by3">
+                      <%= image_tag ranking.politican.image_url %>
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="content section">
+                      <h4><%= ranking.politican.name %></h4>
+                      <p><%= ranking.rating %></p>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
