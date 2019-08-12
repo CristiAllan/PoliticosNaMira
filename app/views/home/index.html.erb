@@ -1,0 +1,74 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Qual é o melhor político
+      </h1>
+      <h2 class="subtitle">
+        Escolha qual o político, entre essas duas opções, que tem contrubuído melhor com o Brasil.
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="preloader-wrapper big loader">
+  <div class="spinner-layer spinner-blue-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="columns is-mobile">
+  <div class="column">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <figure class="image is-4by3">
+          <%= image_tag @political01.image_url %>
+        </figure>
+        <p class="title"><%= @political01.name %> - <%= @political01.age %></p>
+        <p class="subtitle">
+          <%= @political01.kind %><br>
+          <%= political_party_formated @political02 %>
+        </p>
+      </article>
+    </div>
+  </div>
+  <div class="column">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <figure class="image is-4by3">
+          <%= image_tag @political02.image_url %>
+        </figure>
+        <p class="title"><%= @political02.name %> - <%= @political02.age %></p>
+        <p class="subtitle">
+          <%= @political02.kind %><br>
+          <%= political_party_formated @political02 %>
+        </p>
+      </article>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+
+    $('.open-box').click(function() {
+      event.preventDefault();
+
+      let player = $(this).attr("action");
+      let $form = $(this).closest('form');
+      let command = $form.find('select').val();
+      socket.emit('sendcommand', command, player, (res) => {
+        console.log("Resposta", res)
+      })
+    });
+
+
+
+  })
+</script>

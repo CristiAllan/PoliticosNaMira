@@ -10,6 +10,31 @@
   </head>
 
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <strong>Politicos Na Mira</strong>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu is-fixed-top">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <%= link_to('Comparation', home_index_path, :class => "button is-info") %>
+              <%= link_to('Ranking', home_ranking_path, :class => "button is-primary") %>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="navbar-start">
+          <a class="navbar-item" href="/admin">
+            Administrativo
+          </a>
+        </div> -->
+
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
